@@ -1,11 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { GalleryComponent } from './components/gallery/gallery';
 
 @Component({
   selector: 'app-root',
-  imports: [],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [GalleryComponent],
+  template: '<app-gallery></app-gallery>',
+  styles: []
 })
-export class App {
-  protected readonly title = signal('image-gallery');
-}
+export class AppComponent {}

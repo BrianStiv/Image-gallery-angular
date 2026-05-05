@@ -1,0 +1,52 @@
+<p-toast></p-toast>
+<p-toast key="confirm" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="flex flex-col gap-4 w-full">
+            <div class="font-bold text-lg">{{ message.summary }}</div>
+            <div class="text-sm">{{ message.detail }}</div>
+            <div class="flex gap-2 justify-end">
+                <p-button label="Cancelar" styleClass="p-button-text" (click)="onReject()"></p-button>
+                <p-button label="Eliminar" severity="danger" (click)="onAccept()"></p-button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+@if(selectedIds().size > 0) {
+
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4
+       bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl">
+    <span class="text-sm font-medium">
+        {{ selectedIds().size }} {{ selectedIds().size === 1 ? 'imagen' : 'imágenes' }}
+        {{ selectedIds().size === 1 ? 'seleccionada' : 'seleccionadas' }}
+    </span>
+
+    <p-button icon="pi pi-trash" label="Eliminar" severity="danger" [rounded]="true" styleClass="p-button-sm"
+        [ariaLabel]="'Eliminar imágenes seleccionadas'" (click)="deleteSelected()"></p-button>
+</div>
+}
+
+<div cdkDropList cdkDropListOrientation="mixed" class="
+        mt-16 mb-16 mx-auto w-11/12 md:w-10/12 md:max-w-7xl lg:max-w-screen-2xl
+        grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 auto-rows-[200px] touch-pan-y" (cdkDropListDropped)="drop($event)">
+    @for(image of images(); track image.id) {
+    @if(image.url){
+    @if($index === 0){
+    <div cdkDrag class="lg:col-span-2 lg:row-span-2">
+        <app-image [image]="image" [isSelected]="isImageSelected(image.id)" [isFeatured]="$index === 0"
+            (selectImage)="toggleSelection($event)" (deleteImage)="handleDelete($event)"
+            class="cursor-pointer hover:opacity-80 transition" />
+    </div>
+    } @else {
+    <div cdkDrag>
+        <app-image [image]="image" [isSelected]="isImageSelected(image.id)" [isFeatured]="$index === 0"
+            (selectImage)="toggleSelection($event)" (deleteImage)="handleDelete($event)"
+            class="cursor-pointer hover:opacity-80 transition" />
+    </div>
+    }
+    } @else {
+    <div class="empty-image flex justify-center items-center tracking-widest" aria-label="Imagen no disponible">Imagen
+        no disponible</div>
+    }
+    }
+</div>
