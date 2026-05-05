@@ -21,6 +21,30 @@ Galería de imágenes interactiva construida con Angular y PrimeNG.
 - TypeScript
 - Jasmine/Karma
 
+## Estructura del Proyecto
+
+```bash
+src/
+ └─ app/
+     ├─ components/
+     │   ├─ image/
+     │   │   ├─ image.ts
+     │   │   └─ image.html
+     │   └─ gallery/
+     │       ├─ gallery.ts
+     │       └─ gallery.html
+     ├─ data/
+     │   └─ images.data.ts
+     └─ models/
+         └─ imageModel.ts
+```
+
+## Clonar el proyecto
+
+```bash
+git clone https://github.com/BrianStiv/Image-gallery-angular.git
+```
+
 ## Cómo ejecutar
 
 ```bash
@@ -41,8 +65,3 @@ ng test --code-coverage
 ng build
 ```
 
-## Estructura de Ramas
-
-- `main`: Versión de producción
-- `develop`: Código integrado
-- `feature/*`: Nuevas funcionalidades
