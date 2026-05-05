@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ImageModel } from '../../models/imageModel';
 import { CheckboxModule } from 'primeng/checkbox';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-image',
   standalone: true,
-  imports: [CommonModule, FormsModule, CheckboxModule],
+  imports: [CommonModule, FormsModule, CheckboxModule, Button],
   templateUrl: './image.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
