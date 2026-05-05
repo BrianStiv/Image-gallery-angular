@@ -6,19 +6,19 @@
     <div class="absolute inset-0 bg-blue-500/20 transition-opacity pointer-events-none"
         [class.opacity-0]="!isSelected()" [class.opacity-100]="isSelected()"></div>
 
-    <div class="absolute top-2 left-2.5 z-10" (click)="$event.stopPropagation()">
-        <p-checkbox [ngModel]="isSelected()" [binary]="true" (onChange)="onCheckboxChange()"></p-checkbox>
+    <div class="absolute top-2 left-2.5" (click)="$event.stopPropagation()">
+        <p-checkbox [ngModel]="isSelected()" (ngModelChange)="onCheckboxChange()" [binary]="true"></p-checkbox>
     </div>
 
-    @if(isFeatured()){
-    <div
-        class="absolute bottom-2 left-2 px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold uppercase rounded tracking-wider shadow-lg z-10 pointer-events-none">
-        Destacada
-    </div>
-    }
-
-    <button type="button" (click)="deleteImageClick($event)"
-        class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all shadow-md z-20"
-        [class.opacity-100]="isSelected()" [class.opacity-0]="!isSelected()"
-        [class.group-hover\:opacity-100]="!isSelected()" aria-label="Eliminar Imagen">X</button>
+    <p-button
+        (click)="deleteImageClick($event)"
+        styleClass="absolute top-2.5 right-2.5 w-9 h-9 !p-0 !bg-red-500 !border-red-500 hover:!bg-red-600 transition-opacity"
+        [class.opacity-100]="isSelected()"
+        [class.opacity-0]="!isSelected()"
+        [class.group-hover\:opacity-100]="!isSelected()"
+        icon="pi pi-trash"
+        [rounded]="true"
+        severity="danger"
+        aria-label="Eliminar Imagen"
+    ></p-button>
 </div>
